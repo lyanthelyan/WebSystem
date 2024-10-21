@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using SalesWebApplication.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+// Connect to a Db MySql
 builder.Services.AddDbContext<SalesWebApplicationContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("SalesWebApplicationContext"), 
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("SalesWebApplicationContext"))));
