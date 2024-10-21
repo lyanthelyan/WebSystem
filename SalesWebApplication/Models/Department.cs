@@ -1,8 +1,27 @@
-﻿namespace SalesWebApplication.Models
+﻿using System.Linq;
+
+namespace SalesWebApplication.Models
 {
     public class Department
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
+
+        public Department() { }
+
+        public Department(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public void AddSales(Seller seller) { Sellers.Add(seller); }
+
+        public double TotalSales (DateTime inital, DateTime final)
+        {
+            // Seller Method
+            return Sellers.Sum(seller => seller.TotalSales(inital, final));
+        }
     }
 }
